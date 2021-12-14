@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10.0f;
+    private float speed = 100.0f;
     private Rigidbody playerRb;
     private bool isGrounded = true; // 接地
     private bool allowJump = true;  // ジャンプ許可
-
-    private const string groundTag = "Ground";
 
     void Start()
     {
@@ -48,10 +46,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(groundTag))
+        switch (collision.gameObject.tag)
         {
-            isGrounded = true;
-            allowJump = true;
+            case "Ground":
+                isGrounded = true;
+                allowJump = true;
+
+                break;
+            
+            case "Enemy":
+                Debug.Log("Collides with Enemy");
+
+                break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Powerup"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }
