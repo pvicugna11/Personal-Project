@@ -7,8 +7,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public GameObject powerupPrefab;
 
-    private float xRange = 20;
-    private float zRange = 20;
+    private float xRange = 15;
+    private float zRange = 15;
     private float yPos = 0.6f;
 
     private float startTime = 1.0f;
